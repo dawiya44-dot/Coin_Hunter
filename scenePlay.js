@@ -7,26 +7,25 @@ var scenePlay = new Phaser.Class({
   init: function () {},
 
   preload: function () {
-    this.load.setBaseURL("assets/");
-    this.load.image("background", "images/BG.png");
-    this.load.image("btn_play", "images/ButtonPlay.png");
-    this.load.image("gameover", "images/GameOver.png");
-    this.load.image("coin", "images/Koin.png");
-    this.load.image("enemy1", "images/Musuh01.png");
-    this.load.image("enemy2", "images/Musuh02.png");
-    this.load.image("enemy3", "images/Musuh03.png");
-    this.load.image("coin_panel", "images/PanelCoin.png");
-    this.load.image("ground", "images/Tile50.png");
+    this.load.image("background", "assets/images/BG.png");
+    this.load.image("btn_play", "assets/images/ButtonPlay.png");
+    this.load.image("gameover", "assets/images/GameOver.png");
+    this.load.image("coin", "assets/images/Koin.png");
+    this.load.image("enemy1", "assets/images/Musuh01.png");
+    this.load.image("enemy2", "assets/images/Musuh02.png");
+    this.load.image("enemy3", "assets/images/Musuh03.png");
+    this.load.image("coin_panel", "assets/images/PanelCoin.png");
+    this.load.image("ground", "assets/images/Tile50.png");
 
-    this.load.audio("snd_coin", "audio/koin.mp3");
-    this.load.audio("snd_lose", "audio/kalah.mp3");
-    this.load.audio("snd_jump", "audio/lompat.mp3");
-    this.load.audio("snd_leveling", "audio/ganti_level.mp3");
-    this.load.audio("snd_walk", "audio/jalan.mp3");
-    this.load.audio("snd_touch", "audio/touch.mp3");
-    this.load.audio("music_play", "audio/music_play.mp3");
+    this.load.audio("snd_coin", "assets/audio/koin.mp3");
+    this.load.audio("snd_lose", "assets/audio/kalah.mp3");
+    this.load.audio("snd_jump", "assets/audio/lompat.mp3");
+    this.load.audio("snd_leveling", "assets/audio/ganti_level.mp3");
+    this.load.audio("snd_walk", "assets/audio/jalan.mp3");
+    this.load.audio("snd_touch", "assets/audio/touch.mp3");
+    this.load.audio("music_play", "assets/audio/music_play.mp3");
 
-    this.load.spritesheet("char", "images/CharaSpriteAnim.png", {
+    this.load.spritesheet("char", "assets/images/CharaSpriteAnim.png", {
       frameWidth: 44.8,
       frameHeight: 93,
     });
