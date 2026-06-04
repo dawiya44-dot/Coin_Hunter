@@ -50,6 +50,7 @@ var scenePlay = new Phaser.Class({
     };
 
     let activeScene = this;
+    var currentLevel = 1;
 
     // Background
     this.add.image(X_POSITION.CENTER, Y_POSITION.CENTER, "background");
@@ -62,8 +63,7 @@ var scenePlay = new Phaser.Class({
     this.snd_touch = this.sound.add("snd_touch");
     this.snd_walk = this.sound.add("snd_walk");
     this.snd_walk.loop = true;
-    this.snd_walk.setVolume(5);
-    this.snd_walk.play();
+    this.snd_walk.setVolume(0);
     if (!this.sound.get("music_play")) {
       this.music_play = this.sound.add("music_play", { loop: true });
     } else {
@@ -121,6 +121,7 @@ var scenePlay = new Phaser.Class({
         },
       });
       activeScene.snd_touch.play();
+      activeScene.snd_walk.play();
       if (!activeScene.music_play.isPlaying) {
         activeScene.music_play.play();
       }
@@ -242,7 +243,7 @@ var scenePlay = new Phaser.Class({
           alpha: 1,
           onComplete: function () {
             prepareWorld();
-            newLavelTransition();
+            newLevelTransition();
             activeScene.snd_walk.setVolume(5);
           },
         });
@@ -250,7 +251,6 @@ var scenePlay = new Phaser.Class({
     };
     this.physics.add.overlap(this.player, coins, collectCoin, null, this);
 
-    var currentLevel = 1; // Fixed: Start from level 1
     this.gameStarted = false;
 
     var prepareWorld = function () {
@@ -353,7 +353,7 @@ var scenePlay = new Phaser.Class({
       });
 
       if (currentLevel > 2) {
-        var x = Phaser.Math.Between(100, game.canvas.width - 100);
+        var x = Phaser.Math.Between(100, activeScene.game.canvas.width - 100);
         var enemy = enemies.create(
           x,
           -100,
@@ -365,7 +365,7 @@ var scenePlay = new Phaser.Class({
         enemy.allowGravity = false;
       }
     };
-    var newLavelTransition = function () {
+    var newLevelTransition = function () {
       var levelTransitionText = activeScene.add.text(
         activeScene.game.canvas.width / 2,
         activeScene.game.canvas.height / 2,
@@ -407,7 +407,7 @@ var scenePlay = new Phaser.Class({
 
     var enemies = this.physics.add.group();
 
-    var hitEnemy = function (player, enemy) {
+    var hitEnemy = (player, enemy) => {
       this.physics.pause();
       player.setTint(0xff0000);
 
@@ -464,7 +464,7 @@ var scenePlay = new Phaser.Class({
     };
 
     // Tambahkan collider musuh dengan player
-    this.physics.add.collider(this.player, enemies, hitEnemy, null, this);
+    this.physics.add.collider(this.player, enemies, hitEnemy, null, null);
 
     // Dunia awal
     prepareWorld();
